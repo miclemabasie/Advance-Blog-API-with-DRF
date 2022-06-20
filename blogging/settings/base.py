@@ -1,3 +1,4 @@
+from tarfile import DEFAULT_FORMAT
 from tkinter import INSERT
 import environ
 import os
@@ -46,7 +47,7 @@ ALLOWED_HOSTS = ["localhost"]
 
 CUSTOM_APPS = ["apps.commons", "apps.profiles", "apps.users", "apps.blog"]
 
-THIRD_PARTY_APPS = ["django_countries"]
+THIRD_PARTY_APPS = ["django_countries", "phonenumber_field"]
 
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -140,9 +141,44 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/staticfiles/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# CONFIGURING THE LOGGING
+
+import logging
+from django.utils.log import DEFAULT_LOGGING
+
+logger = logging.getLogger(__name__)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {"format": "%(asctime)s %(name)-12s - %(levelname)-8s- %(message)s"},
+        "file": {"format": "%(asctime)s %(name)-12s - %(levelname)-8s- %(message)s"},
+        "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
+    },
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "logs/blog.log",
+        },
+        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
+    },
+    "loggers": {
+        "": {"level": "INFO", "handlers": ["console", "file"], "propagate": False},
+        "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
+        "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+    },
+}
