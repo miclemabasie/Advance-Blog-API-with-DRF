@@ -57,7 +57,13 @@ class CustomUserManager(BaseUserManager):
 
         return user
 
+<<<<<<< HEAD
     def create_superuser(self, username, email, password, **extra_fields):
+=======
+    def create_super_user(
+        self, username, first_name, last_name, email, password, **extra_fields
+    ):
+>>>>>>> 4a8063e74fc079c99f434f97b83d654fa4c4f65a
 
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_staff", True)
@@ -72,6 +78,7 @@ class CustomUserManager(BaseUserManager):
         if not password:
             raise ValueError(_("Super user must have a password"))
 
+<<<<<<< HEAD
         if email:
             email = self.normalize_email(email)
             self.validate_email(email)
@@ -79,6 +86,19 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Admin User must provide an email address"))
 
         user = self.model(username=username, email=email, **extra_fields)
+=======
+        self.check_user_parameter(
+            username, first_name, last_name, email, is_superuser=True
+        )
+
+        user = self.model(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            **extra_fields
+        )
+>>>>>>> 4a8063e74fc079c99f434f97b83d654fa4c4f65a
 
         user.set_password(password)
         user.save(using=self._db)
