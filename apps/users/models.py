@@ -15,10 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(verbose_name=_("Fist Name"), max_length=255)
     last_name = models.CharField(verbose_name=_("Last Name"), max_length=255)
     is_staff = models.BooleanField(default=False)
-<<<<<<< HEAD
     is_active = models.BooleanField(default=True)
-=======
->>>>>>> 4a8063e74fc079c99f434f97b83d654fa4c4f65a
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
 

@@ -45,7 +45,12 @@ ALLOWED_HOSTS = ["localhost"]
 
 # Application definition
 
-CUSTOM_APPS = ["apps.commons", "apps.profiles", "apps.users", "apps.blog"]
+CUSTOM_APPS = [
+    "apps.commons",
+    "apps.profiles.apps.ProfilesConfig",
+    "apps.users",
+    "apps.blog",
+]
 
 THIRD_PARTY_APPS = ["django_countries", "phonenumber_field"]
 
