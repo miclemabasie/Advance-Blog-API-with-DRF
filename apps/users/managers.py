@@ -15,7 +15,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("You must pass in a valid email address."))
 
     def check_user_parameter(
-        self, username, first_name, last_name, email, password, is_superuser=None
+        self, username, first_name, last_name, email, is_superuser=None
     ):
 
         if not username:
