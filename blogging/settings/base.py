@@ -48,7 +48,9 @@ CUSTOM_APPS = [
     "apps.commons",
     "apps.profiles.apps.ProfilesConfig",
     "apps.users",
-    "apps.blog",
+    "apps.articles",
+    "apps.comments",
+    "apps.authors",
 ]
 
 THIRD_PARTY_APPS = [
@@ -57,6 +59,7 @@ THIRD_PARTY_APPS = [
     "djoser",
     "rest_framework",
     "rest_framework_simplejwt",
+    "taggit",
 ]
 
 DJANGO_APPS = [

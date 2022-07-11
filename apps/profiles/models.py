@@ -49,5 +49,7 @@ class Profile(TimeStampUUIDModel):
     instagram = models.CharField(max_length=255, blank=True, null=True)
     tiktok = models.CharField(max_length=255, blank=True, null=True)
 
+    is_author = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.user.username}'s Profile"
