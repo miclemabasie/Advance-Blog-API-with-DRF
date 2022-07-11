@@ -1,4 +1,6 @@
 from tabnanny import verbose
+from turtle import numinput
+import black
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -6,6 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 from django.conf import settings
 from apps.commons.models import TimeStampUUIDModel
+from slugify import slugify
 
 
 User = settings.AUTH_USER_MODEL
@@ -35,6 +38,7 @@ class Profile(TimeStampUUIDModel):
         default=Gender.OTHER,
         max_length=100,
     )
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
     proffessional = models.CharField(
         verbose_name=_("What do you do for a living"), max_length=100
     )

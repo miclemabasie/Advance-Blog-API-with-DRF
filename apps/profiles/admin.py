@@ -4,7 +4,16 @@ from .models import Profile
 
 class ProfileAdmin(admin.ModelAdmin):
 
-    list_display = ["user", "phone", "gender", "proffessional", "country", "city"]
+    list_display = [
+        "id",
+        "pkid",
+        "user",
+        "phone",
+        "gender",
+        "proffessional",
+        "country",
+        "city",
+    ]
     list_filter = ["country", "city"]
 
 
