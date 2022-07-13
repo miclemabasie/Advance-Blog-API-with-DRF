@@ -2,6 +2,7 @@ from django.db import models
 from apps.commons.models import TimeStampUUIDModel
 from apps.profiles.models import Profile
 from taggit.managers import TaggableManager
+from taggit.models import Tag
 
 
 class Category(TimeStampUUIDModel):
