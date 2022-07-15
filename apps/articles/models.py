@@ -9,6 +9,9 @@ class Category(TimeStampUUIDModel):
     category_name = models.CharField(max_length=200)
     description = models.TextField()
 
+    def __str__(self):
+        return self.category_name
+
 
 class Article(TimeStampUUIDModel):
     author = models.ForeignKey(

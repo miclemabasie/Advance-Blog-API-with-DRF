@@ -1,10 +1,12 @@
+from os import set_inheritable
 from tkinter.tix import STATUS
+from unittest import installHandler
 from django.http import Http404
 from django.shortcuts import render
 from requests import Response
 from .models import Article
-from .serializers import ArticleSerializer
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from .serializers import ArticleSerializer, UpdateArticleSerializer
+from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 
@@ -36,4 +38,10 @@ class ArticleDetailAPIView(RetrieveAPIView):
     lookup_field = "pkid"
 
 
-# article_detail_api_view = ArticleDetailAPIView.as_view()
+article_detail_api_view = ArticleDetailAPIView.as_view()
+
+
+class UpdateArticleAPIView(UpdateAPIView):
+    serializer_class = UpdateArticleSerializer
+    queryset = Article.objects.filter(is_published=True)
+    lookup_field = "pkid"
