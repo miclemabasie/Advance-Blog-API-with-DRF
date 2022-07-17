@@ -5,7 +5,7 @@ from .models import Category
 
 @admin.register(Article)
 class AdminArticle(admin.ModelAdmin):
-    list_display = ["pkid", "id", "author", "is_published"]
+    list_display = ["pkid", "id", "title", "category", "author", "is_published"]
 
 
 admin.site.register(Category)

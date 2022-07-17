@@ -5,8 +5,17 @@ from django.http import Http404
 from django.shortcuts import render
 from requests import Response
 from .models import Article
-from .serializers import ArticleSerializer, UpdateArticleSerializer
-from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView
+from .serializers import (
+    ArticleSerializer,
+    UpdateArticleSerializer,
+    CreateArticleSerializer,
+)
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+    CreateAPIView,
+)
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 
@@ -45,3 +54,8 @@ class UpdateArticleAPIView(UpdateAPIView):
     serializer_class = UpdateArticleSerializer
     queryset = Article.objects.filter(is_published=True)
     lookup_field = "pkid"
+
+
+class ArticleCreateAPIView(CreateAPIView):
+    serializer_class = CreateArticleSerializer
+    queryset = Article.objects.all()
