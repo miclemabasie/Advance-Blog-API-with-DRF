@@ -10,6 +10,7 @@ urlpatterns = [
     path("api/v1/auth/", include("djoser.urls.jwt")),
     path("api/v1/authors/", include("apps.authors.urls", namespace="authors")),
     path("api/v1/articles/", include("apps.articles.urls", namespace="articles")),
+    path("api/v1/search/", include("apps.search.urls")),
     path("admin/", admin.site.urls),
 ]
 

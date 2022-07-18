@@ -15,6 +15,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     UpdateAPIView,
     CreateAPIView,
+    DestroyAPIView,
 )
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
@@ -59,3 +60,9 @@ class UpdateArticleAPIView(UpdateAPIView):
 class ArticleCreateAPIView(CreateAPIView):
     serializer_class = CreateArticleSerializer
     queryset = Article.objects.all()
+
+
+class ArticleDeleteAPIView(DestroyAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = "pkid"
